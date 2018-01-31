@@ -1,7 +1,9 @@
 /* 定义京东主体色变量 */
 
 @main-color: #006699;
-
+html,body{
+    height: 100%;
+}
 /* 清除浏览器的默认样式 */
 
 * {
@@ -86,13 +88,30 @@ h1 {
     height: 45px;
     background-color: @main-color;
     z-index: 999;
+    .fa-arrow-left {
+        color: #fff;
+        position: absolute;
+        left: 15px;
+        top: 13px;
+    }
+    >form{
+        margin: 0 35px;
+        padding-top: 5px;
+        >input{
+            background-color: #fff;
+            text-align:left;
+            font-size: 12px;
+            margin-bottom: 0;
+        }
+    }
     >h4 {
         color: #fff;
         font-weight: normal;
         text-align: center;
         line-height: 35px;
+        font-size: 16px;
     }
-    .fa-search {
+    .fa-search,.fa-home {
         color: #fff;
         position: absolute;
         right: 15px;
@@ -110,7 +129,7 @@ h1 {
     width: 100%;
     height: 45px;
     background-color: @main-color;
-    z-index:999;
+    z-index: 999;
     .mui-row {
         >div {
             >a {
@@ -123,11 +142,15 @@ h1 {
                     display: block;
                 }
             }
-            &.active{
-                >a{
-                   color:greenyellow;
+            &.active {
+                >a {
+                    color: greenyellow;
                 }
             }
         }
     }
+}
+
+main{
+    padding: 45px 0;
 }

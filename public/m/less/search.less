@@ -1,0 +1,62 @@
+@import 'base.less';
+body{
+	background-color: #fff;
+}
+#search {
+    /* 搜索表单 */
+    .search-form {
+        position: relative;
+        padding: 10px;
+        .search-input {
+            margin-right: 54px;
+            >input {
+                background-color: #fff;
+                text-align: left;
+                font-size: 12px;
+                border: 1px solid @main-color;
+                border-radius: 5px 0px 0px 5px;
+                margin-bottom: 0px;
+            }
+        }
+        >button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background-color: @main-color;
+            border-radius: 0px 5px 5px 0px;
+            height: 34px;
+            border-color: @main-color;
+        }
+    }
+    /* 搜索历史 */
+    .search-history {
+        padding: 10px;
+        .search-history-title {
+            >span {
+                font-size: 12px;
+                color: #666;
+            }
+        }
+        .search-history-body {
+            >ul {
+            	border-left: 1px solid #ccc;
+            	border-right: 1px solid #ccc;
+                >li {
+                    >a {
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                        font-size: 12px;
+                        color: #666;
+                        >.fa-close {
+                            float: right;
+                            margin-right: 10px;
+                        }
+                    }
+                    &.mui-table-view-cell:after{
+                    	left: 0px;
+                    }
+                }
+            }
+        }
+    }
+}

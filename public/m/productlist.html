@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>我的乐淘商品列表页面</title>
+    <link rel="icon" href="images/favicon.ico">
+    <!-- 1. 引入mui的css -->
+    <link rel="stylesheet" href="lib/mui/css/mui.css">
+    <!-- 2. 引入图标的css -->
+    <link rel="stylesheet" href="lib/fontAwesome/css/font-awesome.css">
+    <!-- 3. 引入搜索页的less -->
+    <link rel="stylesheet/less" href="less/productlist.less">
+    <!-- 4. 引入less编译器 -->
+    <script src="lib/less/less.js"></script>
+</head>
+
+<body>
+    <!-- 头部区域 -->
+    <header id="header">
+        <a href="#" class="fa fa-arrow-left"></a>
+        <h4>我的乐淘商品列表页面</h4>
+    </header>
+    <!-- 商品列表页面的主体 -->
+    <main id="main">
+        <!-- 区域滚动的父容器 （下拉刷新依赖区域滚动） -->
+        <div class="mui-scroll-wrapper">
+            <!-- 区域滚动的子容器 -->
+            <div class="mui-scroll">
+                <!-- 内容就放到自容器里面 -->
+                <form action="#" class="search-form">
+                    <div class="search-input">
+                        <input type="search" placeholder="请输入要搜索的商品">
+                    </div>
+                    <button type="button" class="mui-btn mui-btn-primary btn-search">搜索</button>
+                </form>
+                <!-- 商品列表-->
+                <div class="product-list">
+                    <!-- 商品列表的标题 -->
+                    <div class="product-list-title">
+                        <div class="mui-row">
+                            <div class="mui-col-xs-3 active">
+                                <a href="#" data-sort="1" data-sort-type="time">
+                            上架时间
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                            </div>
+                            <div class="mui-col-xs-3">
+                                <a href="#" data-sort="1" data-sort-type="price">
+                            价格
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                            </div>
+                            <div class="mui-col-xs-3">
+                                <a href="#" data-sort="1" data-sort-type="num">
+                            数量
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                            </div>
+                            <div class="mui-col-xs-3" >
+                                <a href="#" data-sort="1" data-sort-type="discount">
+                            折扣
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 商品列表的内容 -->
+                    <div class="product-list-body">
+<!--                         <div class="mui-row">
+    <div class="mui-col-xs-6 ">
+        <div class="product">
+            <a href="#" class="product-img">
+                <img src="images/product.jpg" alt="">
+            </a>
+            <div class="product-name">
+                adidas阿迪达斯 男式 场下休闲篮球鞋S83700
+            </div>
+            <div class="product-price">
+                <span class="now-price">
+                    ¥560.00
+                    </span>
+                <del class="old-price">
+                    ¥888.00
+                </del>
+            </div>
+            <div class="product-buy">
+                <button type="button" class="mui-btn mui-btn-primary ">立即购买</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- 底部区域 -->
+    <footer id="footer">
+        <div class="mui-row">
+            <div class="mui-col-xs-3 active">
+                <a href="index.html">
+                    <i class="fa fa-home"></i> 首页
+                </a>
+            </div>
+            <div class="mui-col-xs-3">
+                <a href="category.html">
+                    <i class="fa fa-bars"></i> 分类
+                </a>
+            </div>
+            <div class="mui-col-xs-3">
+                <a href="cart.html">
+                    <i class="fa fa-shopping-cart"></i> 购物车
+                </a>
+            </div>
+            <div class="mui-col-xs-3">
+                <a href="user.html">
+                    <i class="fa fa-user"></i> 个人中心
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!-- 创建商品列表的模板 -->
+    <script type="text/html" id="productListTmp">
+        <div class="mui-row">
+            {{each data as value i}}
+            <div class="mui-col-xs-6 ">
+                <div class="product">
+                    <a href="#" class="product-img">
+                        <img src="{{value.pic[0].picAddr}}" alt="">
+                    </a>
+                    <div class="product-name">
+                       {{value.proName}}
+                    </div>
+                    <div class="product-price">
+                        <span class="now-price">
+                                            ¥{{value.price}}
+                                            </span>
+                        <del class="old-price">
+                            ¥{{value.oldPrice}}
+                        </del>
+                        <span class="num">{{value.num}}</span>
+                    </div>
+                    <div class="product-buy">
+                        <a href="detail.html?id={{value.id}}" data-id="{{value.id}}" class="mui-btn mui-btn-primary btn-buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </script>
+    <!-- 5. 引入mui的js -->
+    <script src="lib/mui/js/mui.js"></script>
+    <!-- 6. 引入模板引擎 -->
+    <script src="lib/artTemplate/template.js"></script>
+    <!-- 7. 引入zepto -->
+    <script src="lib/zepto/zepto.min.js"></script>
+    <!-- 8. 引入搜索的js文件 -->
+    <script src="js/productlist.js"></script>
+</body>
+
+</html>

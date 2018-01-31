@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>我的乐淘商品列表页面</title>
+    <link rel="icon" href="images/favicon.ico">
+    <!-- 1. 引入mui的css -->
+    <link rel="stylesheet" href="lib/mui/css/mui.css">
+    <!-- 2. 引入图标的css -->
+    <link rel="stylesheet" href="lib/fontAwesome/css/font-awesome.css">
+    <!-- 3. 引入搜索页的less -->
+    <link rel="stylesheet/less" href="less/detail.less">
+    <!-- 4. 引入less编译器 -->
+    <script src="lib/less/less.js"></script>
+</head>
+
+<body>
+    <!-- 头部区域 -->
+    <header id="header">
+        <a href="#" class="fa fa-arrow-left"></a>
+        <h4>我的乐淘商品详情页面</h4>
+        <a href="index.html" class="fa fa-home"></a>
+    </header>
+    <!-- 商品详情页面的主体 -->
+    <main id="main">
+        <!-- 轮播图区域 -->
+        <div id="slide">
+            <!-- 轮播图的大容器 -->
+            <div class="mui-slider">
+                <!-- 轮播图的图片容器 -->
+                <!-- <div class="mui-slider-group mui-slider-loop"> -->
+                <!--支持循环，需要重复图片节点-->
+                <!-- <div class="mui-slider-item mui-slider-item-duplicate">
+                        <a href="#"><img src="images/banner4.png" /></a>
+                    </div>
+                    <div class="mui-slider-item">
+                        <a href="#"><img src="images/banner1.png" /></a>
+                    </div>
+                    <div class="mui-slider-item">
+                        <a href="#"><img src="images/banner2.png" /></a>
+                    </div>
+                    <div class="mui-slider-item">
+                        <a href="#"><img src="images/banner3.png" /></a>
+                    </div>
+                    <div class="mui-slider-item">
+                        <a href="#"><img src="images/banner4.png" /></a>
+                    </div> -->
+                <!--支持循环，需要重复图片节点-->
+                <!--  <div class="mui-slider-item mui-slider-item-duplicate">
+                        <a href="#"><img src="images/banner1.png" /></a>
+                    </div> -->
+                <!-- </div> -->
+                <!-- 轮播图的小圆点 和 图片容器在一起的 -->
+                <!--  <div class="mui-slider-indicator">
+                    <div class="mui-indicator mui-active"></div>
+                    <div class="mui-indicator"></div>
+                    <div class="mui-indicator"></div>
+                    <div class="mui-indicator"></div>
+                </div> -->
+            </div>
+        </div>
+        <!-- 商品的详情信息 -->
+        <div class="product">
+            <div class="product-name">
+                名称： 【莹恋】MIZUNO美津浓V1GA159002乒乓球鞋男鞋女鞋室内综合训练鞋
+            </div>
+            <div class="product-price">
+                价格：
+                <span class="now-price">
+                    ¥4969.1
+                </span>
+                <del class="old-price">
+                    ¥8868.1
+                </del>
+            </div>
+            <div class="product-size">
+                尺码：
+                <span class="btn-size">40</span>
+                <span class="btn-size">41</span>
+                <span class="btn-size">42</span>
+                <span class="btn-size">43</span>
+                <span class="btn-size">40</span>
+                <span class="btn-size">40</span>
+                <span class="btn-size">41</span>
+                <span class="btn-size">42</span>
+                <span class="btn-size">43</span>
+                <span class="btn-size">40</span>
+                <span class="btn-size">40</span>
+                <span class="btn-size">41</span>
+                <span class="btn-size">42</span>
+                <span class="btn-size">43</span>
+                <span class="btn-size">40</span>
+            </div>
+            <div class="product-num">
+                数量： <span class="btn-sub">-</span>
+                <input type="num" class="num-input"><span class="btn-add">+</span> 剩余： <span class="num">22</span>件
+            </div>
+        </div>
+    </main>
+    <!-- 创建一个轮播图的模板 -->
+    <script type="text/html" id="slideDetailTmp">
+        <div class="mui-slider-group mui-slider-loop">
+            {{each pic as value i}}
+            <div class="mui-slider-item">
+                <a href="#"><img src="{{value.picAddr}}" /></a>
+            </div>
+            {{/each}}
+        </div>
+        <div class="mui-slider-indicator">
+            {{each pic as value i}}
+            <div class="mui-indicator"></div>
+            {{/each}}
+        </div>
+    </script>
+    <!-- 创建商品详情模板 -->
+    <script type="text/html" id="productDetailTmp">
+        <div class="product-name">
+            名称： {{proName}}
+        </div>
+        <div class="product-price">
+            价格：
+            <span class="now-price">
+                    ¥{{price}}
+                </span>
+            <del class="old-price">
+                ¥{{oldPrice}}
+            </del>
+        </div>
+        <div class="product-size">
+            尺码：     
+            {{each size as value i}}       
+                <span class="btn-size">{{value}}</span>
+            {{/each}}
+        </div>
+        <div class="product-num">
+            数量： <span class="btn-sub">-</span><input type="num" class="num-input"><span class="btn-add">+</span> 剩余： <span class="num">{{num}}</span>件
+        </div>
+    </script>
+    <!-- 底部区域 -->
+    <footer id="footer">
+        <a href="#" class="fa fa-shopping-cart"></a>
+        <a href="#" class="mui-btn mui-btn-danger">加入购物车</a>
+        <a href="#" class="mui-btn mui-btn-warning">立即购买</a>
+    </footer>
+    <!-- 5. 引入mui的js -->
+    <script src="lib/mui/js/mui.js"></script>
+    <!-- 6. 引入模板引擎 -->
+    <script src="lib/artTemplate/template.js"></script>
+    <!-- 7. 引入zepto -->
+    <script src="lib/zepto/zepto.min.js"></script>
+    <!-- 8. 引入搜索的js文件 -->
+    <script src="js/detail.js"></script>
+</body>
+
+</html>

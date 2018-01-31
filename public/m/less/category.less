@@ -1,0 +1,75 @@
+@import 'base.less';
+#category {
+    height: 100%;
+    padding: 45px 0px;
+    .category-left {
+        position: absolute;
+        left: 0;
+        top: 45px;
+        >ul {
+            >li {
+                >a {
+                    display: block;
+                    width: 90px;
+                    height: 40px;
+                    text-align: center;
+                    line-height: 40px;
+                    font-size: 12px;
+                    background-color: #fff;
+                    border-right: 1px solid #ccc;
+                    border-bottom: 1px solid #ccc;
+                }
+                &.active{
+                    >a{
+                        background-color: #ccc;
+                    }
+                }
+            }
+        }
+    }
+    .category-right {
+        margin-left: 90px;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        /*第一版本父容器样式  给滚动的父容器设置宽度为 自动 因为mui的 .mui-scroll-wrapper 加了width是100% 并且定位的
+        如果加了margin-left就不能再加width:100% 要把宽度设置为自动 */
+        /* 因为滑动的父容器添加了绝对定位 不会受父元素padding的影响想要下来就要设置定位值
+            或者你给定位的元素在加一个padding-top 和 padding-bottom */
+        /*  &.mui-scroll-wrapper {
+           width: auto;          
+           padding: 55px 10px;
+       } */
+        /* 第二个版本的父容器 因为定位了所以不受到父元素padding的影响给定位元素再加一个padding */
+        .mui-scroll-wrapper {
+            padding: 10px;
+        }
+        .category-list {
+            /* 第一版本子容器样式 因为父元素加了width:auto 靠内容撑开父容器的宽度
+                 如果子元素设置了绝对定位或者浮动就撑不开 父元素的宽度 
+                 把子容器的默认绝对定位覆盖成相对定位 */
+            /*  &.mui-scroll {
+              
+               position: relative;                
+           } */
+            /* 设置一个最小高度101%目的是为了超过父容器的高度 能够滑动 */
+            min-height: 101%;
+            .mui-row {
+                >div {
+                    >a {
+                        display: block;
+                        text-align: center;
+                        background-color: #fff;
+                        >img {
+                            width: 100%;
+                        }
+                        p {
+                            font-size: 12px;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

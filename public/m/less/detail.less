@@ -1,0 +1,84 @@
+@import 'base.less';
+body {
+    background-color: #fff;
+}
+
+#main {
+    .product {
+    	font-size: 14px;
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .product-price {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            .now-price {
+                font-size: 20px;
+                font-weight: 600;
+                color: #f40;
+            }
+            .old-price {
+                font-size: 12px;
+                color: #ccc;
+            }
+        }
+        .product-size {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            .btn-size {
+                width: 30px;
+                height: 30px;
+                border: 1px solid #ccc;
+                display: inline-block;
+                text-align: center;
+                line-height: 30px;
+                font-size: 14px;
+                margin-top: 5px;
+            }
+        }
+        .product-num {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            .btn-sub,
+            .btn-add {
+                width: 30px;
+                height: 30px;
+                border: 1px solid #ccc;
+                display: inline-block;
+                text-align: center;
+                line-height: 30px;
+                font-size: 14px;
+                margin-top: 5px;
+            }
+            .num-input{
+            	width: 30px;
+            	height: 30px;
+            	border-top: 1px solid #ccc;
+            	border-bottom: 1px solid #ccc;
+            	transform:translateY(-1px);
+            }
+        }
+    }
+}
+
+#footer {
+    background-color: #ccc;
+    padding-top: 5px;
+    .fa-shopping-cart {
+        position: absolute;
+        left: 20px;
+        top: 10px;
+        z-index: 999;
+        font-size: 30px;
+    }
+    .mui-btn-danger {
+        width: 40%;
+        margin-left: 60px;
+    }
+    .mui-btn-warning {
+        width: 40%;
+    }
+}
