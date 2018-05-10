@@ -43,3 +43,5 @@ jspm_packages
 node_modules
 
 # 忽略私密文件  文件名就直接写文件名.扩展名
+
+.gitignore
