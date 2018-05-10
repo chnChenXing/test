@@ -1,0 +1,88 @@
+@import 'base.less';
+body {
+    background-color: #fff;
+}
+
+
+/* 购物车主体 */
+
+#main {
+    .mui-table-view-cell {
+        padding: 0.15625rem 0.625rem;
+        .mui-media {
+            .mui-media-body {
+                font-size: 0.4375rem;
+                .product-name {
+                    //默认媒体的标题是不能换行的
+                    //white-space: nowrap;
+                    //设置成能换行的
+                    white-space: normal;
+                }
+                .product-price {
+                    .now-price {
+                        color: #f40;
+                        font-weight: 600;
+                    }
+                    .old-price {
+                        color: #ccc;
+                    }
+                }
+                .mui-pull-right {
+                    color: #888;
+                    margin-right: 0.625rem;
+                }
+                .product-size {
+                    color: #888;
+                }
+                .product-options {
+                    position: absolute;
+                    left: 0.9375rem;
+                    bottom: 0.3125rem;
+                }
+            }
+        }
+    }
+}
+
+
+/* 订单区域 */
+
+#order {
+    position: fixed;
+    width: 100%;
+    bottom: 1.40625rem;
+    height: 1.25rem;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    padding: 0.15625rem;
+    font-size: 0.4375rem;
+    line-height: 1.25rem;
+    .mui-pull-left {
+        color: #f40;
+        font-weight: 600;
+    }
+}
+.mui-numbox{
+    width: 3.4375rem;
+}
+.mui-numbox [class*=numbox-btn], .mui-numbox [class*=btn-numbox]{
+    width: 0.9375rem;
+}
+/* 商品尺码的公共样式 */
+.product-size {
+    padding: 0.3125rem;
+    border-bottom: 1px solid #ccc;
+    .btn-size {
+        width: 0.9375rem;
+        height: 0.9375rem;
+        border: 1px solid #ccc;
+        display: inline-block;
+        text-align: center;
+        line-height: 0.9375rem;
+        font-size: 0.4375rem;
+        margin-top: 0.15625rem;
+        &.active {
+            background-color: yellowgreen;
+        }
+    }
+}

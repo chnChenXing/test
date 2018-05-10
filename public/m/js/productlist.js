@@ -51,7 +51,7 @@ Letao.prototype = {
                     //通过回调函数 等ajax请求完毕拿到数据了之后在传递给下拉刷新的实现数据渲染
                     var html = template('productListTmp', data);
                     $('.product-list-body').html(html);
-                    //当数据刷新完毕结束下拉刷新
+                    //当数据刷新完毕结束下拉刷新 停止转圈圈
                     mui('.mui-scroll-wrapper').pullRefresh().endPulldownToRefresh();
                     // 每次下拉刷新的时候要把page重置为1
                     page = 1;
@@ -82,7 +82,7 @@ Letao.prototype = {
                     }
                     // 上拉加载更多往后面的追加
                     $('.product-list-body').append(html);
-                    //当数据刷新完毕结束上拉加载
+                    //当数据刷新完毕结束上拉加载 停止上拉的转圈圈
                     mui('.mui-scroll-wrapper').pullRefresh().endPullupToRefresh();
                 }, 1000);
             });
@@ -115,7 +115,7 @@ Letao.prototype = {
             letao.getProductListData({
                 proName: search,
                 page: 1,
-                pageSize: 5
+                pageSize: 2
             }, function(data) {
                 //通过回调函数 等ajax请求完毕拿到数据了之后在传递给下拉刷新的实现数据渲染
                 var html = template('productListTmp', data);
@@ -128,7 +128,7 @@ Letao.prototype = {
         // 给所有排序按钮添加点击事件
         //在下拉刷新和上拉加载的内容里面添加点击事件会触发不了 在mui的插件里面阻止了点击事件
         //这只能添加轻触事件 但是轻触在模拟器会触发2次 真机不会 换成singleTap可以好一点
-        $('.product-list-title .mui-row > div > a').on('singleTap', function() {
+        $('.product-list-title .mui-row > div > a').on('tap', function() {
             $('.product-list-title .mui-row > div').removeClass('active');
             $(this).parent().addClass('active');
             // 1. 获取当前点击的a的排序方式是升序还是降序
@@ -157,7 +157,7 @@ Letao.prototype = {
                 letao.getProductListData({
                     proName: search,
                     page: 1,
-                    pageSize: 5,
+                    pageSize: 2,
                     price: sort
                 }, function(data) {
                     //通过回调函数 等ajax请求完毕拿到数据了之后在传递给下拉刷新的实现数据渲染
@@ -169,7 +169,7 @@ Letao.prototype = {
                 letao.getProductListData({
                     proName: search,
                     page: 1,
-                    pageSize: 5,
+                    pageSize: 2,
                     num: sort
                 }, function(data) {
                     //通过回调函数 等ajax请求完毕拿到数据了之后在传递给下拉刷新的实现数据渲染
@@ -180,7 +180,7 @@ Letao.prototype = {
         });
     },
     buyProduct:function () {
-        $('body').on('singleTap','.btn-buy',function () {
+        $('body').on('tap','.btn-buy',function () {
             // 获取当前点击按钮的商品id传入到详情页面
            window.location.href = 'detail.html?id='+$(this).data('id'); 
         });

@@ -14,12 +14,14 @@
     <link rel="stylesheet/less" href="less/productlist.less">
     <!-- 4. 引入less编译器 -->
     <script src="lib/less/less.js"></script>
+    <!-- 7. 引入rem的公共样式 -->
+    <script src="js/rem.js"></script>
 </head>
 
 <body>
     <!-- 头部区域 -->
     <header id="header">
-        <a href="#" class="fa fa-arrow-left"></a>
+        <a href="javascript:history.back();" class="fa fa-arrow-left"></a>
         <h4>我的乐淘商品列表页面</h4>
     </header>
     <!-- 商品列表页面的主体 -->
@@ -58,7 +60,7 @@
                             <i class="fa fa-angle-down"></i>
                         </a>
                             </div>
-                            <div class="mui-col-xs-3" >
+                            <div class="mui-col-xs-3">
                                 <a href="#" data-sort="1" data-sort-type="discount">
                             折扣
                             <i class="fa fa-angle-down"></i>
@@ -68,7 +70,7 @@
                     </div>
                     <!-- 商品列表的内容 -->
                     <div class="product-list-body">
-<!--                         <div class="mui-row">
+                        <!--                         <div class="mui-row">
     <div class="mui-col-xs-6 ">
         <div class="product">
             <a href="#" class="product-img">
@@ -131,7 +133,7 @@
                         <img src="{{value.pic[0].picAddr}}" alt="">
                     </a>
                     <div class="product-name">
-                       {{value.proName}}
+                        {{value.proName}}
                     </div>
                     <div class="product-price">
                         <span class="now-price">
@@ -156,6 +158,8 @@
     <script src="lib/artTemplate/template.js"></script>
     <!-- 7. 引入zepto -->
     <script src="lib/zepto/zepto.min.js"></script>
+    <!-- tap本来是存在touch.js包里面 但是一般能够直接 个别版本的浏览可能没有 单独引入touch包 -->
+    <!-- <script src="lib/zepto/touch.js"></script> -->
     <!-- 8. 引入搜索的js文件 -->
     <script src="js/productlist.js"></script>
 </body>

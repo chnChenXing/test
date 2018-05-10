@@ -16,12 +16,14 @@
     <link rel="stylesheet/less" href="less/category.less">
     <!-- 4. 引入less的编译器文件 -->
     <script src="lib/less/less.js"></script>
+    <!-- 7. 引入rem的公共样式 -->
+    <script src="js/rem.js"></script>
 </head>
 
 <body>
     <!-- 头部区域 -->
     <header id="header">
-        <a href="#" class="fa fa-arrow-left"></a>
+        <a href="javascript:history.back();" class="fa fa-arrow-left"></a>
         <form action="#">
             <input type="search" placeholder="请输入要搜索的商品">
         </form>
@@ -45,11 +47,25 @@
             <div class="mui-scroll-wrapper">
                 <!-- 滑动的子容器 添加mui-scroll类名 -->
                 <div class="category-list mui-scroll">
-                  
                 </div>
             </div>
         </div>
     </main>
+    <!-- 加载中效果 -->
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_one"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_three"></div>
+                <div class="object" id="object_four"></div>
+                <div class="object" id="object_five"></div>
+                <div class="object" id="object_six"></div>
+                <div class="object" id="object_seven"></div>
+                <div class="object" id="object_eight"></div>
+            </div>
+        </div>
+    </div>
     <!-- 底部区域 -->
     <footer id="footer">
         <div class="mui-row">
@@ -93,17 +109,15 @@
     <!-- 2. 定义右侧分类的模板  -->
     <script type="text/html" id="categoryRightTmp">
         <div class="mui-row">
-            {{if rows.length}}                            
-                {{each rows as value i}}
-                <div class="mui-col-xs-4">
-                    <a href="#">
-                        <img src="{{value.brandLogo}}" alt="">
-                        <p>{{value.brandName}}</p>
-                    </a>
-                </div>
-                {{/each}}            
-            {{else}}
-                <p>没有数据</p>
+            {{if rows.length}} {{each rows as value i}}
+            <div class="mui-col-xs-4">
+                <a href="#">
+                    <img src="{{value.brandLogo}}" alt="">
+                    <p>{{value.brandName}}</p>
+                </a>
+            </div>
+            {{/each}} {{else}}
+            <p>没有数据</p>
             {{/if}}
         </div>
     </script>

@@ -14,12 +14,14 @@
     <link rel="stylesheet/less" href="less/detail.less">
     <!-- 4. 引入less编译器 -->
     <script src="lib/less/less.js"></script>
+    <!-- 7. 引入rem的公共样式 -->
+    <script src="js/rem.js"></script>
 </head>
 
 <body>
     <!-- 头部区域 -->
     <header id="header">
-        <a href="#" class="fa fa-arrow-left"></a>
+        <a href="javascript:history.back();" class="fa fa-arrow-left"></a>
         <h4>我的乐淘商品详情页面</h4>
         <a href="index.html" class="fa fa-home"></a>
     </header>
@@ -115,6 +117,30 @@
         </div>
     </script>
     <!-- 创建商品详情模板 -->
+    <!--    <script type="text/html" id="productDetailTmp">
+     <div class="product-name">
+         名称： {{proName}}
+     </div>
+     <div class="product-price">
+         价格：
+         <span class="now-price">
+                 ¥{{price}}
+             </span>
+         <del class="old-price">
+             ¥{{oldPrice}}
+         </del>
+     </div>
+     <div class="product-size">
+         尺码：     
+         {{each size as value i}}       
+             <span class="btn-size">{{value}}</span>
+         {{/each}}
+     </div>
+     <div class="product-num">
+         数量： <span class="btn-sub">-</span><input type="num" class="num-input"><span class="btn-add">+</span> 剩余： <span class="num">{{num}}</span>件
+     </div>
+ </script> -->
+    <!-- 商品详情模板2 -->
     <script type="text/html" id="productDetailTmp">
         <div class="product-name">
             名称： {{proName}}
@@ -129,20 +155,24 @@
             </del>
         </div>
         <div class="product-size">
-            尺码：     
-            {{each size as value i}}       
-                <span class="btn-size">{{value}}</span>
-            {{/each}}
+            尺码： {{each size as value i}}
+            <span class="btn-size" data-size="{{value}}">{{value}}</span> {{/each}}
         </div>
         <div class="product-num">
-            数量： <span class="btn-sub">-</span><input type="num" class="num-input"><span class="btn-add">+</span> 剩余： <span class="num">{{num}}</span>件
+            <span>数量：</span>
+            <div class="mui-numbox" data-numbox-step='1' data-numbox-min='0' data-numbox-max='{{num}}'>
+                <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+                <input class="mui-numbox-input" type="number" />
+                <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+            </div>
+            <span>剩余： <span>{{num}}</span>件</span>
         </div>
     </script>
     <!-- 底部区域 -->
     <footer id="footer">
-        <a href="#" class="fa fa-shopping-cart"></a>
-        <a href="#" class="mui-btn mui-btn-danger">加入购物车</a>
-        <a href="#" class="mui-btn mui-btn-warning">立即购买</a>
+        <a href="javascript:;" class="fa fa-shopping-cart"></a>
+        <a href="javascript:;" class="mui-btn mui-btn-danger btn-add-cart">加入购物车</a>
+        <a href="javascript:;" class="mui-btn mui-btn-warning">立即购买</a>
     </footer>
     <!-- 5. 引入mui的js -->
     <script src="lib/mui/js/mui.js"></script>

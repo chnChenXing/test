@@ -10,22 +10,23 @@ body {
     height: 100%;
     /* 区域滚动的父容器 */
     .mui-scroll-wrapper {
-    	/* 把区域滚动的父容器干脆设置为相对定位 */
-    		position: relative;
-    		/* 同时添加高度为100%  子元素都是绝对定位 父元素会没有高度 加一个100%的高度 */
-    		height: 100%;
+        /* 把区域滚动的父容器干脆设置为相对定位 */
+        position: relative;
+        /* 同时添加高度为100%  子元素都是绝对定位 父元素会没有高度 加一个100%的高度 */
+        height: 100%;
         /* 区域滚动的子容器 */
         .mui-scroll {
-            /* 搜索表单 */
             .search-form {
                 position: relative;
-                padding: 10px;
+                padding: 0.3125rem;
                 .search-input {
-                    margin-right: 54px;
+                    margin-right: 1.6875rem;
                     >input {
                         background-color: #fff;
                         text-align: left;
-                        font-size: 12px;
+                        font-size: 0.375rem;
+                        height: 1.0625rem;
+                        width: 100%;
                         border: 1px solid @main-color;
                         border-radius: 5px 0px 0px 5px;
                         margin-bottom: 0px;
@@ -33,65 +34,82 @@ body {
                 }
                 >button {
                     position: absolute;
-                    right: 10px;
-                    top: 10px;
+                    right: 0.3125rem;
+                    width: 1.685rem;
+                    top: 0.3125rem;
                     background-color: @main-color;
                     border-radius: 0px 5px 5px 0px;
-                    height: 34px;
+                    height: 1.0625rem;
                     border-color: @main-color;
                 }
             }
             /* 商品列表 */
             .product-list {
                 .product-list-title {
-                    padding: 0 10px;
+                    padding: 0 0.3125rem;
                     .mui-row {
                         >div {
                             >a {
                                 display: block;
                                 text-align: center;
-                                font-size: 12px;
+                                font-size: 0.375rem;
                                 background-color: #eee;
-                                line-height: 30px;
+                                line-height: 0.9375rem;
                             }
                             &.active {
                                 >a {
-                                    color: #f40;                                    
+                                    color: #f40;
                                 }
                             }
                         }
                     }
                 }
                 .product-list-body {
-                    padding: 0px 5px;
+                    padding: 0px 0.15625rem;
                     .mui-row {
                         >div {
-                            padding: 0 5px;
-                            margin-top: 10px;
+                            padding: 0 0.15625rem;
+                            margin-top: 0.3125rem;
                             .product {
-                                box-shadow: 0px 0px 1px #ccc;
-                                padding-bottom: 10px;
+                                box-shadow: 0px 0px 0.03125rem #ccc;
+                                padding-bottom: 0.3125rem;
                                 .product-img {
                                     >img {
                                         width: 100%;
                                     }
                                 }
                                 .product-name {
-                                    font-size: 14px;
+                                    font-size: 0.4375rem;
                                     text-align: center;
-                                    height: 28px;
-                                    line-height: 14px;
+                                    /* height: 0.875rem;
+                                    line-height: 0.4375rem;
+                                    overflow: hidden; */
+                                    /* 不使用行高一半的方式 */
+                                    /*   overflow: hidden;
+                                  text-overflow: clip;
+                                  display: -webkit-box;
+                                  -webkit-box-orient: vertical;
+                                  -webkit-line-clamp: 2; */
+                                    word-break: break-all;
+                                    text-overflow: ellipsis;
+                                    display: -webkit-box;
+                                    /** 对象作为伸缩盒子模型显示 **/
+                                    -webkit-box-orient: vertical;
+                                    /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+                                    -webkit-line-clamp: 2;
+                                    /** 显示的行数 **/
                                     overflow: hidden;
+                                    /** 隐藏超出的内容 **/
                                 }
                                 .product-price {
-                                    font-size: 12px;
+                                    font-size: 0.375rem;
                                     text-align: center;
                                     .now-price {
                                         color: #f40;
                                     }
                                     .old-price {
                                         color: #ccc;
-                                        margin-left: 10px;
+                                        margin-left: 0.3125rem;
                                     }
                                 }
                                 .product-buy {

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的乐淘后台主页面</title>
+    <link rel="icon" href="images/favicon.ico">
+    <!-- 1. 引入bootstrap的样式 -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+    <!-- 2. 引入字体图标 -->
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
+    <!-- 3. 引入后台登录的less -->
+    <link rel="stylesheet/less" href="less/index.less">
+    <style>
+    td {
+        line-height: 84px !important;
+    }
+    </style>
+    <!-- 4. 引入less.js编译器文件 -->
+    <script src="lib/less/less.js"></script>
+</head>
+
+<body>
+    <!-- 主页容器 -->
+    <div class="layout">
+        <aside class="left">
+            <div class="left-title">
+                <img src="images/2.png" alt="">
+                <p>王佳宝</p>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="index.html" class="fa fa-user">用户管理</a></li>
+                <li class="list-group-item">
+                    <!-- 注意href只能有一个 -->
+                    <a data-toggle="collapse" href="#collapseExample">分类管理</a>
+                    <div class="collapse in" id="collapseExample">
+                        <div class="well">
+                            <ul>
+                                <li>
+                                    <a href="categoryFirst.html">一级分类</a>
+                                </li>
+                                <li>
+                                    <a href="categorySecond.html">二级分类</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item"><a href="productMange.html">商品管理</a></li>
+            </ul>
+        </aside>
+        <main class="right">
+            <div class="right-title clearfix">
+                <a href="#" class="pull-left fa fa-navicon"></a>
+                <a href="#" class="pull-right fa fa-sign-out">退出</a>
+            </div>
+            <div class="right-body">
+            </div>
+        </main>
+    </div>
+    <div id="modal"></div>
+    <!-- 创建分类的模板 -->
+    <script type="text/html" id="brandTmp">
+        <button class="btn btn-primary btn-add-brand" data-toggle="modal" data-target="#myModal">添加品牌</button>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>选择</th>
+                    <th>品牌编号</th>
+                    <th>品牌名称</th>
+                    <th>品牌logo</th>
+                    <th>所属分类</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{each rows as value i}}
+                <tr>
+                    <td scope="row">
+                        <input type="checkbox">
+                    </td>
+                    <td>{{value.id}}</td>
+                    <td>{{value.brandName}}</td>
+                    <td><img src="{{value.brandLogo}}" alt="" style="width:80px"></td>
+                    <td>{{value.categoryName}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </script>
+    <!-- 模态框 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加二级分类</h4>
+                </div>
+                <div class="modal-body">
+                    选择分类：
+                    <span class="dropdown">
+                            
+                        </span>
+                    <input type="text" class="form-control brand-name-add" placeholder="请输入品牌">
+                    <input type="file" name="file" id="" class="brand-file-add">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary btn-save" data-dismiss="modal">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 创建添加品牌的模板 -->
+    <script type="text/html" id="addBrandTmp">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{rows[0].categoryName}}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            {{each rows as value i}}
+            <li><a href="#" data-id="{{value.id}}" data-category-name="{{value.categoryName}}">{{value.categoryName}}</a></li>
+            {{/each}}
+        </ul>
+    </script>
+    <!-- 5. 引入jquery -->
+    <script src="lib/jquery/jquery.js"></script>
+    <!-- 6. 引入bootstrap的js文件 -->
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <!-- 7. 引入模板引擎的js文件 -->
+    <script src="lib/artTemplate/template.js"></script>
+    <!-- 8. 引入自己的js文件 -->
+    <script src="js/index.js"></script>
+    <script>
+    var letao;
+    $(function() {
+        letao = new Letao();
+        // 分类页面调用一级分类 获取方法
+        letao.getBrand();
+        letao.addBrand();
+    });
+    </script>
+</body>
+
+</html>

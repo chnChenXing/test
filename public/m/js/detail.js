@@ -7,6 +7,7 @@ $(function() {
 
     //再根据id获取商品详情
     letao.getProductDetail();
+    letao.addCart();
 });
 var Letao = function() {
 
@@ -41,7 +42,13 @@ Letao.prototype = {
                 // 等轮播图渲染完毕再初始化轮播
                 // 初始化轮播图插件
                 letao.sliderInit();
-
+                // split()表示字符串分割
+                // var str = '2018/02/02';
+                // var arr = str.split('/');
+                // console.log(arr);['2018','02','02'];
+                // var size = "40-50";
+                // var arr = size.split('-');
+                // console.log(arr);['40','50'];
                 // 2. 渲染商品的详情
                 // 截取尺码的-之前的数字作为起点
                 var start = data.size.split('-')[0];
@@ -56,8 +63,63 @@ Letao.prototype = {
                 }
                 var html = template('productDetailTmp', data);
                 $('.product').html(html);
+                //初始化数字框 传入数字框容器的选择器 
+                mui('.mui-numbox').numbox();
+                // 让尺码支持点击
+                $('.btn-size').on('click', function() {
+                    $('.btn-size').removeClass('active');
+                    $(this).addClass('active');
+                });
             }
         })
+    },
+    //添加购物车
+    addCart: function() {
+        // 1. 给加入购物车按钮添加点击事件
+        $('.btn-add-cart').on('click', function() {
+            // 2. 拿到当前商品的id 数量 和 尺码
+            // 获取尺码
+            var size = $('.btn-size.active').data('size');
+            // 获取数量
+            var num = mui('.mui-numbox').numbox().getValue();
+            // 3. 判断当前是否选择了尺码和数量
+            if (!size) {
+                mui.toast('请选择尺码', { duration: 'long', type: 'div' })
+                return;
+            }
+            if (!num) {
+                mui.toast('请选择数量', { duration: 'long', type: 'div' })
+                return;
+            }
+            // 4. 调用添加购物车的API加入到购物车
+            $.ajax({
+                url:'/cart/addCart',
+                data:{'productId':id,'size':size,'num':num},
+                type:'post',
+                success:function (data) {
+                    // 5. 判断返回值是否报错
+                    if(data.error){
+                        // 6. 未登录跳转到登录页面
+                         window.location.href = 'login.html';
+                    }else{
+                        //7. 如果不报错就是成功 跳转到购物车去购买（问一下是否要去购物车结算）
+                        // mui的确认框
+                        mui.confirm('是否去购物车结算','温馨提示的标题',['不去','去'],function (e) {
+                            //点了第一个按钮
+                            if(e.index == 0){
+                                  mui.toast('您为什么不去', { duration: 'long', type: 'div' })
+                            }
+                            //点了第二个按钮
+                            if(e.index == 1){
+                                  mui.toast('正在进入购物车', { duration: 'long', type: 'div' });
+                                  //跳转到购物车
+                                  window.location.href = 'cart.html';
+                            }
+                        });
+                    }
+                }
+            })
+        });
     }
 }
 

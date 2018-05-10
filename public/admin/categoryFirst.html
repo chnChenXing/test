@@ -28,7 +28,7 @@
                 <li class="list-group-item">
                     <!-- 注意href只能有一个 -->
                     <a data-toggle="collapse" href="#collapseExample">分类管理</a>
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse in" id="collapseExample">
                         <div class="well">
                             <ul>
                                 <li>
@@ -50,14 +50,13 @@
                 <a href="#" class="pull-right fa fa-sign-out">退出</a>
             </div>
             <div class="right-body">
-                <!-- <table class="table table-bordered">
+                <!--  <button class="btn btn-primary btn-add-category">添加分类</button>
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>选择</th>
-                            <th>用户名</th>
-                            <th>手机号</th>
-                            <th>状态</th>
-                            <th>操作</th>
+                            <th>分类编号</th>
+                            <th>分类名称</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,39 +64,41 @@
                             <th scope="row">
                                 <input type="checkbox">
                             </th>
-                            <td>张三</td>
-                            <td>1333333333</td>
-                            <td>已启用</td>
-                            <td>
-                                <button class="btn btn-danger">禁用</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <input type="checkbox">
-                            </th>
-                            <td>股添乐</td>
-                            <td>1333333333</td>
-                            <td>已禁用</td>
-                            <td>
-                                <button class="btn btn-success">启用</button>
-                            </td>
-                        </tr>
+                            <td>1</td>
+                            <td>户外馆</td>
+                        </tr>                        
                     </tbody>
                 </table> -->
             </div>
         </main>
     </div>
-    <!-- 创建用户模板 -->
-    <script type="text/html" id="userTmp">
+    <!-- 模态框 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加一级分类</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control category-name" placeholder="分类名称">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary btn-save" data-dismiss="modal">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 创建分类的模板 -->
+    <script type="text/html" id="categoryFirstTmp">
+        <button class="btn btn-primary btn-add-category" data-toggle="modal" data-target="#myModal">添加分类</button>
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>选择</th>
-                    <th>用户名</th>
-                    <th>手机号</th>
-                    <th>状态</th>
-                    <th>操作</th>
+                    <th>分类编号</th>
+                    <th>分类名称</th>
                 </tr>
             </thead>
             <tbody>
@@ -106,45 +107,12 @@
                     <th scope="row">
                         <input type="checkbox">
                     </th>
-                    <td>{{value.username}}</td>
-                    <td>{{value.mobile}}</td>
-                    {{if value.isDelete == 0}}
-                    <td>已禁用</td>
-                    <td>
-                        <button class="btn btn-success btn-options" data-id="{{value.id}}" data-is-delete="{{value.isDelete}}" data-page="{{page}}">启用</button>
-                    </td>
-                    {{else}}
-                    <td>已启用</td>
-                    <td>
-                        <button class="btn btn-danger btn-options" data-id="{{value.id}}" data-is-delete="{{value.isDelete}}" data-page="{{page}}">禁用</button>
-                    </td>
-                    {{/if}}
+                    <td>{{value.id}}</td>
+                    <td>{{value.categoryName}}</td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
-        <div class="page-navigation clearfix">
-            <div class="pull-left">
-                <p>显示第 <span class="page">{{page}}</span> 页的 <span class="page-size">{{size}}</span> 条记录，总共 <span class="total">{{total}}</span> 条记录</p>
-            </div>
-            <div class="pull-right">
-                <ul class="pagination">
-                    <li>
-                        <a href="javascript:;" aria-label="Previous" class="prev" data-page="{{page}}" data-page-max="{{pageMax}}">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    {{each pageCount as value i}}
-                    <li><a href="javascript:;" data-page="{{value}}">{{value}}</a></li>
-                    {{/each}}
-                    <li>
-                        <a href="javascript:;" aria-label="Next" class="next" data-page="{{page}}" data-page-max="{{pageMax}}">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </script>
     <!-- 5. 引入jquery -->
     <script src="lib/jquery/jquery.js"></script>
@@ -158,9 +126,9 @@
     var letao;
     $(function() {
         letao = new Letao();
-        letao.getUser();
-        letao.getPageUser();
-        letao.updateUser();
+        // 分类页面调用一级分类 获取方法
+        letao.getCategoryFirst();
+        letao.addCategoryFirst();
     });
     </script>
 </body>

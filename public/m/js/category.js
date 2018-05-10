@@ -30,16 +30,23 @@ Letao.prototype = {
         // 1. ajax请求左侧分类API
         $.ajax({
             url: '/category/queryTopCategory',
+            /*发送请求之前的回调函数*/
+            beforeSend: function() {
+                $('#loading').show();
+            },
             success: function(data) {
-                /*后台返回的都是json格式的字符串 只是zepto的ajax把字符串转换成了js对象
+                setTimeout(function() {
+                    /*后台返回的都是json格式的字符串 只是zepto的ajax把字符串转换成了js对象
                 JSON.parse()*/
-                console.log(data);
-                // 3. 调用模板引擎的方法生成模板html
-                var html = template('categoryLeftTmp', data);
-                // 4. 获取左侧分类的容器把模板拼到里面
-                $('.category-left ul').html(html);
-                // 给第一个li添加active类名
-                $('.category-left ul li').eq(0).addClass('active');
+                    console.log(data);
+                    // 3. 调用模板引擎的方法生成模板html
+                    var html = template('categoryLeftTmp', data);
+                    // 4. 获取左侧分类的容器把模板拼到里面
+                    $('.category-left ul').html(html);
+                    // 给第一个li添加active类名
+                    $('.category-left ul li').eq(0).addClass('active');
+                    $('#loading').hide();
+                }, 500);
             }
         });
     },
@@ -55,7 +62,8 @@ Letao.prototype = {
             getData(id);
         });
         getData(1);
-        function getData(id) {          
+
+        function getData(id) {
             $.ajax({
                 url: '/category/querySecondCategory',
                 data: { 'id': id },
